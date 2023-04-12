@@ -2,7 +2,7 @@
  * SORTING NODES WITHIN A CONTAINER
  * Please, make sure to read the following files in the exercises-info folder before you start
  * * 01 SelectNodes.md
-*/
+ */
 
 /**
  * @task
@@ -24,7 +24,6 @@ const allItems = document.querySelectorAll(".item");
 // Your code goes here
 const main = document.getElementById("main");
 
-
 /**
  * @task
  * Select the favorites container by id of "favs"
@@ -33,8 +32,7 @@ const main = document.getElementById("main");
  */
 
 // Your code goes here
-
-
+const favs = document.getElementById("favs");
 
 /**
  * @task
@@ -46,8 +44,22 @@ const main = document.getElementById("main");
  */
 
 // Your code goes here
+const updateCollections = (id, direction) => {
+  const item = document.getElementById(id);
+  const itemIcon = item.querySelector("i.fa-solid");
 
-
+  if (direction === "toFavs") {
+    itemIcon.classList.remove("fa-heart-circle-plus");
+    itemIcon.classList.add("fa-heart-crack");
+    main.removeChild(item);
+    favs.appendChild(item);
+  } else {
+    itemIcon.classList.remove("fa-heart-crack");
+    itemIcon.classList.add("fa-heart-circle-plus");
+    favs.removeChild(item);
+    main.appendChild(item);
+  }
+};
 
 /**
  * @task
@@ -64,5 +76,13 @@ const main = document.getElementById("main");
  */
 
 // Your code goes here...
+const handleClick = (e) => {
+    const item = e.target;
+    const id = item.id    
+    const direction = item.parentElement.id === "main" ? "toFavs" : "toMain";
+    updateCollections(id, direction);
+}
+
+allItems.forEach(item => item.addEventListener("click", (e) => handleClick(e)))
 
 

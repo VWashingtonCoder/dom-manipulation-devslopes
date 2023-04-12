@@ -1,4 +1,4 @@
-# Selecting a Node and a NodeList #
+ # Selecting a Node and a NodeList #
 
 ```HTML
 <!-- body contents -->
