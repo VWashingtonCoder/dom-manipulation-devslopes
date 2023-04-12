@@ -12,8 +12,7 @@
  */
 
 // Your code goes here...
-const allItems = document.querySelectorAll("item");
-console.log(allItems)
+const allItems = document.querySelectorAll(".item");
 
 /**
  * @task
@@ -23,7 +22,7 @@ console.log(allItems)
  * */
 
 // Your code goes here
-
+const main = document.getElementById("main");
 
 
 /**
