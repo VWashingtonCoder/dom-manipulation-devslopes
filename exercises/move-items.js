@@ -12,8 +12,8 @@
  */
 
 // Your code goes here...
-
-
+const allItems = document.querySelectorAll("item");
+console.log(allItems)
 
 /**
  * @task
