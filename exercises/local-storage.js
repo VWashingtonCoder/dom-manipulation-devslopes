@@ -38,3 +38,21 @@
  */
 
 // Your code goes here...
+const container = document.querySelector(".cardsContainer");
+const allCards = document.querySelectorAll(".card");
+
+const changeColor = (card) => {
+  if (card.dataset.fav === "false") {
+    card.style.backgroundColor = "red";
+    card.dataset.fav = true;
+  } else {
+    card.style.backgroundColor = "";
+    card.dataset.fav = false;
+  }
+};
+
+const handleClick = (e) => {
+  changeColor(e.target);
+};
+
+container.addEventListener("click", handleClick);

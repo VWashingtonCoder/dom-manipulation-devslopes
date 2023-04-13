@@ -77,12 +77,12 @@ const updateCollections = (id, direction) => {
 
 // Your code goes here...
 const handleClick = (e) => {
-    const item = e.target;
-    const id = item.id    
-    const direction = item.parentElement.id === "main" ? "toFavs" : "toMain";
-    updateCollections(id, direction);
-}
+  const item = e.target;
+  const id = item.id;
+  const direction = item.parentElement.id === "main" ? "toFavs" : "toMain";
+  updateCollections(id, direction);
+};
 
-allItems.forEach(item => item.addEventListener("click", (e) => handleClick(e)))
-
-
+allItems.forEach((item) =>
+  item.addEventListener("click", (e) => handleClick(e))
+);
