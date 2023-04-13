@@ -40,7 +40,17 @@
 // Your code goes here...
 const container = document.querySelector(".cardsContainer");
 const allCards = document.querySelectorAll(".card");
-localStorage.setItem("FavCards", "");
+const initStorage = localStorage.getItem("FavCards");
+
+if (initStorage) {
+  const storageArr = initStorage.split(",");
+  allCards.forEach(card => {
+    if (storageArr.includes(card.id)) {
+      card.style.backgroundColor = "red";
+      card.dataset.fav = true;
+    }
+  })
+}
 
 const addToLocal = (id) => {
   let storageData = localStorage.getItem("FavCards");
@@ -49,10 +59,11 @@ const addToLocal = (id) => {
 }
 
 const removeFromLocal = (id) => {
-  let storageArr = localStorage.getItem("FavCards").split(",");
+  const storageData = localStorage.getItem("FavCards");
+  let storageArr = storageData.split(",");
   storageArr.splice(storageArr.indexOf(id), 1).join(",");
-  console.log(storageArr);
   localStorage.setItem("FavCards", storageArr);
+  if (storageArr.length <= 1) localStorage.clear();
 }
 
 const changeColor = (card) => {
@@ -68,7 +79,9 @@ const changeColor = (card) => {
 };
 
 const handleClick = (e) => {
-  changeColor(e.target);
+  const card = e.target; 
+  if (Array.from(card.classList).includes("card"))
+    changeColor(e.target);
 };
 
 container.addEventListener("click", handleClick);
