@@ -40,14 +40,30 @@
 // Your code goes here...
 const container = document.querySelector(".cardsContainer");
 const allCards = document.querySelectorAll(".card");
+localStorage.setItem("FavCards", "");
+
+const addToLocal = (id) => {
+  let storageData = localStorage.getItem("FavCards");
+  storageData += `,${id}`;
+  localStorage.setItem("FavCards", storageData);
+}
+
+const removeFromLocal = (id) => {
+  let storageArr = localStorage.getItem("FavCards").split(",");
+  storageArr.splice(storageArr.indexOf(id), 1).join(",");
+  console.log(storageArr);
+  localStorage.setItem("FavCards", storageArr);
+}
 
 const changeColor = (card) => {
   if (card.dataset.fav === "false") {
     card.style.backgroundColor = "red";
     card.dataset.fav = true;
+    addToLocal(card.id);
   } else {
     card.style.backgroundColor = "";
     card.dataset.fav = false;
+    removeFromLocal(card.id);
   }
 };
 
