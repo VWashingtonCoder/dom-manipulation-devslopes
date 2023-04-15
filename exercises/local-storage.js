@@ -54,7 +54,9 @@ if (initStorage) {
 
 const addToLocal = (id) => {
   let storageData = localStorage.getItem("FavCards");
-  storageData += `,${id}`;
+  storageData 
+    ? storageData += `,${id}` 
+    : storageData = id;
   localStorage.setItem("FavCards", storageData);
 }
 
@@ -63,7 +65,7 @@ const removeFromLocal = (id) => {
   let storageArr = storageData.split(",");
   storageArr.splice(storageArr.indexOf(id), 1).join(",");
   localStorage.setItem("FavCards", storageArr);
-  if (storageArr.length <= 1) localStorage.clear();
+  if (storageArr.length <= 0) localStorage.clear();
 }
 
 const changeColor = (card) => {
